@@ -13,8 +13,9 @@ export const Wrapper = styled.div(
 export const Message = styled.h1(
     () => css`
     font-size: 32px;
-    font-weight: 600;
-    color: #384384;
+    font-weight: 700;
+    color: #5A2D03;
+    margin: 0;
     
     
     `

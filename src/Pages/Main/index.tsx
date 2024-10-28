@@ -3,7 +3,9 @@ import { useEffect, useState } from "react";
 import { ApprovalCard } from "../../components/ApprovalCard";
 import * as S from "./styles";
 import { AnimationComponent } from "../../components/AnimationComponent";
-import NotFound from "../../assets/animations/NotFound.json";
+import NotFoundCard from "../../assets/animations/NotFoundCard.json";
+import { Loading } from "../../components/Loading";
+import { useSnackbar } from "notistack";
 
 
 export const Main = () => {
@@ -25,23 +27,30 @@ export const Main = () => {
   }
   
 
-
+    const [isLoading, setIsLoading] = useState(false);
     const [data, setData] = useState([]);
 
+    const { enqueueSnackbar } = useSnackbar();
+
     const fetchUsers = async () => {
+      setIsLoading(true)
       try {
         const response = await fetch('https://apikhiata.onrender.com/api/users/selecionar/awaiting-premium');
         // const response = await fetch('http://localhost:16334/api/users/selecionar/awaiting-premium');
         const result = await response.json();
         setData(result);
       } catch (error) {
+        setData([])
         console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false)
       }
     };
 
     const updateUserStatus = async (userId: number) => {
+      setIsLoading(true)
       try {
-        const response = await fetch(`http://localhost:16334/api/users/atualizar/${userId}`, {
+        const response = await fetch(`https://apikhiata.onrender.com/api/users/atualizar/${userId}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -52,11 +61,14 @@ export const Main = () => {
         if (!response.ok) {
           throw new Error("Erro ao atualizar status do usuário");
         }
-    
         console.log("Status atualizado com sucesso");
-        fetchUsers();
+        enqueueSnackbar("Status atualizado com sucesso", { variant: "success" });
       } catch (error) {
         console.error("Erro ao atualizar status do usuário:", error);
+        enqueueSnackbar("Erro ao atualizar status do usuário", { variant: "error" });
+      } finally {
+        fetchUsers();
+        setIsLoading(false)
       }
     };
     
@@ -69,16 +81,31 @@ export const Main = () => {
 
 
     return (
-        <S.Wrapper>
+      <>
+      <S.Wrapper>
             <S.Container>  
+                
+                {data.length > 0 ? 
+                <>
                 <S.Title>Usuários Esperando Aprovação:</S.Title>
-                {data ? 
-                data.map((item: IUser) => (
-                    <ApprovalCard name={item.name} email={item.email} handleClickApproval={() => updateUserStatus(item.id)} />
-                )) : (
-                  <AnimationComponent animation={NotFound} message="Nenhum Usuário Encontrado" />
-                ) }
+                {
+                  data.map((item: IUser) => (
+                    <ApprovalCard 
+                    name={item.name} 
+                    email={item.email} 
+                    handleClickApproval={() => 
+                      updateUserStatus(item.id)
+                    } />
+                  ))
+                }
+                </>
+                : (
+                  <AnimationComponent animation={NotFoundCard} message="Nenhum Usuário Encontrado" />
+                )}
             </S.Container>
         </S.Wrapper>
+        <Loading isLoading={isLoading} fullScreen={true} />
+      </>
+        
     )
 }
