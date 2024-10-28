@@ -6,6 +6,7 @@ export const Wrapper = styled.div(
     display: flex;
     justify-content: center;
     margin-top: 48px;
+    margin-bottom: 48px;
     align-content: center;
     padding: 0 3rem;
     
