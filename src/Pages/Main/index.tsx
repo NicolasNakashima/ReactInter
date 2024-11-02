@@ -62,10 +62,10 @@ export const Main = () => {
           throw new Error("Erro ao atualizar status do usuário");
         }
         console.log("Status atualizado com sucesso");
-        enqueueSnackbar("Status atualizado com sucesso", { variant: "success" });
+        enqueueSnackbar("Status atualizado com sucesso", { variant: "success", autoHideDuration: 2000 });
       } catch (error) {
         console.error("Erro ao atualizar status do usuário:", error);
-        enqueueSnackbar("Erro ao atualizar status do usuário", { variant: "error" });
+        enqueueSnackbar("Erro ao atualizar status do usuário", { variant: "error", autoHideDuration: 2000 });
       } finally {
         fetchUsers();
         setIsLoading(false)

@@ -11,6 +11,7 @@ export const Navbar = () => {
     const MenuOptions = [
         {name: 'Home', path: '/'},
         {name: 'Dashboard', path: '/dashboard'},
+        {name: 'Formulário', path: '/formulario'},
     ]
 
     const navigate = useNavigate()
