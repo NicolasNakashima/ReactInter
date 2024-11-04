@@ -4,14 +4,16 @@ import * as S from './styles'
 interface IFormCardProps {
     question: string;
     values: string[];
+    onAnswerChange: (value: string) => void;
 }
 
-const FormCard = ({question, values}:IFormCardProps) => {
+const FormCard = ({question, values, onAnswerChange}:IFormCardProps) => {
+
 
     return (
         <S.Wrapper>
             <S.Title>{question}</S.Title>
-            <RadioGroup>
+            <RadioGroup onChange={(e) => onAnswerChange(e.target.value)}>
             {values.map((value) => (
                 <FormControlLabel value={value} control={<Radio/>} label={value} />
             ))}

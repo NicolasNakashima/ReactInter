@@ -51,3 +51,27 @@ export const eighthQuestion = [
     "Sim",
     "Não"
 ]
+
+export const questionsAnswers = [
+    firstQuestion,
+    secondQuestion,
+    thirdQuestions,
+    forthQuestion,
+    fifthQuestion,
+    sixthQuestion,
+    seventhQuestion,
+    eighthQuestion
+]
+
+// `questions` centraliza todas as perguntas e valores
+export const questions = [
+    { question: 'Digite a sua faixa etária', values: firstQuestion },
+    { question: 'Você já consumiu algum produto artesanal?', values: secondQuestion },
+    { question: 'Qual seu nível de interesse em relação a produtos feitos à mão?', values: thirdQuestions },
+    { question: 'Com que frequência você compra produtos artesanais?', values: forthQuestion },
+    { question: 'Você já utilizou um aplicativo/plataforma para comprar produtos artesanais?', values: fifthQuestion },
+    { question: 'Qual tipo de produto artesanal você mais se interessa?', values: sixthQuestion },
+    { question: 'Qual a faixa de preço que você estaria disposto(a) a pagar por um produto artesanal?', values: seventhQuestion },
+    { question: 'Utilizaria um app que une o cliente a costureira?', values: eighthQuestion }
+];
+
