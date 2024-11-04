@@ -1,26 +1,63 @@
-import { FormCard } from '../../components/FormCard'
-import * as S from './styles'
-import * as Q from './mock'
-import { Button } from '@mui/material'
-
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from 'react';
+import { FormCard } from '../../components/FormCard';
+import * as S from './styles';
+import { questions } from './mock'; // importe o array de perguntas
+import { Button } from '@mui/material';
+import { useSnackbar } from 'notistack';
+import { Loading } from '../../components/Loading';
 
 export const Form = () => {
 
+    const [answers, setAnswers] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const { enqueueSnackbar } = useSnackbar();
+
+    const handleAnswerChange = (index: number, answer: string) => {
+        setAnswers((prevAnswers) => ({
+            ...prevAnswers,
+            [`q${index + 1}`]: answer,
+        }));
+    };
+
+    const handleSubmit = async () => {
+        try {
+            const response = await fetch('https://interdisciplinarr.onrender.com/forms', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(answers),
+            });
+            if (response.ok) {
+                enqueueSnackbar('Respostas enviadas com sucesso!', { variant: 'success', autoHideDuration: 2000 });
+            } else {
+                enqueueSnackbar('Erro ao enviar respostas.', { variant: 'error', autoHideDuration: 2000 });
+            }
+        } catch (error) {
+            enqueueSnackbar('Erro de rede ao enviar respostas.', { variant: 'error', autoHideDuration: 2000 });
+        } finally {
+            setIsLoading(false);
+        }
+    };
 
     return (
+        <>
         <S.Wrapper>
             <S.Container>
                 <S.Title>Pesquisa de Campo - Khiata</S.Title>
-                <FormCard question='Digite a sua faixa etária' values={Q.firstQuestion}/>
-                <FormCard question='Você já consumiu algum produto artesanal?' values={Q.secondQuestion}/>
-                <FormCard question='Qual seu nível de interesse em relação a produtos feitos à mão? ' values={Q.thirdQuestions}/>
-                <FormCard question='Com que frequência você compra produtos artesanais?' values={Q.forthQuestion}/>
-                <FormCard question='Você já utilizou um aplicativo/plataforma para comprar produtos artesanais?' values={Q.fifthQuestion}/>
-                <FormCard question='Qual tipo de produto artesanal você mais se interessa?' values={Q.sixthQuestion}/>
-                <FormCard question='Qual a faixa de preço que você estaria disposto(a) a pagar por um produto artesanal?' values={Q.seventhQuestion}/>
-                <FormCard question='Utilizaria um app que une o cliente a costureira?' values={Q.eighthQuestion}/>
-                <Button variant='contained'>Enviar</Button>
+                {questions.map((q, index) => (
+                    <FormCard
+                        key={index}
+                        question={q.question}
+                        values={q.values}
+                        onAnswerChange={(answer) => handleAnswerChange(index, answer)}
+                    />
+                ))}
+                <Button variant='contained' onClick={handleSubmit}>Enviar</Button>
             </S.Container>
         </S.Wrapper>
-    )
-}
+        <Loading isLoading={isLoading} fullScreen={true} />
+        </>
+    );
+};
