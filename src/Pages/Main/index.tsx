@@ -74,7 +74,9 @@ export const Main = () => {
     
 
   useEffect(() => {
-    fetchUsers();
+    if(localStorage.getItem('token')){ 
+      fetchUsers();
+    }
   }, []);
 
 
