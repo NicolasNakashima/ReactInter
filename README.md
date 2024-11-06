@@ -1,50 +1,36 @@
-# React + TypeScript + Vite
+Área Administrativa - Aplicativo Khiata
+Este repositório contém a área administrativa oculta do aplicativo Khiata, projetada para uso exclusivo de administradores. Através desta plataforma, os administradores podem aprovar a validação de contas premium dos usuários.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Funcionalidades
+Autenticação e Controle de Acesso: Utilização de autenticação JWT para garantir acesso seguro e exclusivo para administradores.
+Validação de Contas Premium: Interface intuitiva para verificação e aprovação de contas premium dos usuários.
+Feedback Visual em Tempo Real: Notificações e feedback visual com notistack.
+Formulários Dinâmicos: Integração com APIs para envio de respostas e validação de dados.
+Página de Erro Personalizada: Página 404 customizada, exibida apenas para rotas inexistentes, com exceções em rotas específicas.
+Tecnologias Utilizadas
+Frontend: React com Vite e Material UI.
+Roteamento: React Router Dom para navegação e controle de rotas protegidas.
+Notificações: notistack para exibir mensagens de feedback em tempo real.
+Autenticação: JWT para controle seguro de permissões.
+Animações: Integração de animações com Lottie para feedback visual.
+Configuração e Execução
 
-Currently, two official plugins are available:
+1. Instalar Dependências
+   bash
+   Copiar código
+   npm install
+2. Configurar Ambiente
+   Defina as variáveis de ambiente necessárias no arquivo .env.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+3. Iniciar o Projeto
+   bash
+   Copiar código
+   npm run dev
+   Estrutura de Pastas
+   Pages: Páginas principais da aplicação, incluindo Login, Dashboard, Form, e NotFound.
+   Components: Componentes reutilizáveis, como Navbar e AnimationComponent.
+   Assets: Animações e imagens estáticas.
+   Styles: Arquivos de estilos customizados usando SCSS e MUI.
+   Informações Adicionais
+   Acesso Restrito: Apenas administradores podem acessar esta área.
+   Logout com Redirecionamento: Ao fazer logout, o usuário é redirecionado para a página de login, e o localStorage é limpo automaticamente.
