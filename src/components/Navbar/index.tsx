@@ -9,6 +9,7 @@ export const Navbar = () => {
 
     const [openDrawer, setOpenDrawer] = useState<boolean>(false)
     const username = localStorage.getItem('username') || '';
+    const navigate = useNavigate()
 
     const MenuOptions = [
         {name: 'Home', path: '/'},
@@ -16,7 +17,6 @@ export const Navbar = () => {
         {name: 'Formulário', path: '/admin/formulario'},
     ]
 
-    const navigate = useNavigate()
 
     
     return (
@@ -30,7 +30,7 @@ export const Navbar = () => {
                 ? 
                 <Avatar sx={{ width: '2rem' , height: '2rem', cursor: 'pointer'}} src={localStorage.getItem('url_photo') ?? ''}/>
                 :
-                <Avatar sx={{ width: '2rem' , height: '2rem', bgcolor: deepOrange[500], cursor: 'pointer'}}>{username[0].toUpperCase()}</Avatar>
+                <Avatar sx={{ width: '2rem' , height: '2rem', bgcolor: deepOrange[500], cursor: 'pointer'}}>{String(username[0]).toUpperCase()}</Avatar>
                 }
             
             </S.Info>
