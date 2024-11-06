@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled, { css } from "styled-components";
 
 export const Wrapper = styled.div(
     () => css`
@@ -22,11 +22,5 @@ export const Container = styled.div(
     margin-top: 150px;
     margin-bottom: 48px;
     
-
-    iframe {
-        width: 100%;
-        height: 520px;
-        border: 0;
-    }
     `
 )
