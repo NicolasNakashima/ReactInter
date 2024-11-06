@@ -14,7 +14,7 @@ jobs:
         run: |
           echo "${{secrets.AWS_KHIATA_KEY}}" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i "private_key"  ubuntu@ec2-54-161-187-70.compute-1.amazonaws.com "
-            cd /home/ubuntu/ReactInter/ && 
+            cd /home/ubuntu/ && 
             git pull origin main &&
             tmux kill-session -t KhiataRestrictSession &&
             ./executar.sh "
