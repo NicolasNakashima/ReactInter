@@ -11,15 +11,11 @@ jobs:
 
     steps:
 
-    - name: Set up Node
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18.19.1'
-
     - name: Deploy na EC2
         run: |
           echo "${{secrets.AWS_KHIATA_KEY}}" > private_key && chmod 400 private_key
           ssh -o StrictHostKeyChecking=no -i "private_key"  ubuntu@ec2-54-161-187-70.compute-1.amazonaws.com "
             cd /home/ubuntu/ReactInter/ && 
             git pull origin main &&
+            tmux kill-session -t KhiataRestrictSession &&
             ./executar.sh "
