@@ -22,7 +22,7 @@ export const Form = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('https://interdisciplinarr.onrender.com/forms', {
+            const response = await fetch('https://api-khiata.onrender.com/forms', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

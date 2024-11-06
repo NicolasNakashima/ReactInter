@@ -8,19 +8,33 @@ import { SnackbarProvider } from 'notistack';
 import { CssBaseline } from '@mui/material';
 import { Dashboard } from './Pages/Dashboard';
 import { Form } from './Pages/Form';
+import { Login } from './Pages/Login';
+import AppLayout from './components/AppLayout';
+import { NotFound } from './Pages/NotFound';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
     <CssBaseline>
-    <Navbar />
     <SnackbarProvider>
-      <Routes>
-      <Route path="/" element={<Main />} />
-      <Route path='/dashboard' element={<Dashboard/>}/>
-      <Route path='/formulario' element={<Form/>}></Route>
+      {/* Rotas livre para tráfego */}
+      <Routes> 
+        <Route path="/login" element={<Login />} />
+        <Route path='/user/formulario' element={<Form/>}/>
       </Routes>
     </SnackbarProvider>
+    <Navbar />
+      <SnackbarProvider>
+        {/* Rotas que necessitam autenticação */}
+        <Routes>
+          <Route path='*' element={<NotFound />} />
+          <Route element={<AppLayout/>}>
+            <Route path="/" element={<Main />} />
+            <Route path='/admin/dashboard' element={<Dashboard/>}/>
+            <Route path='/admin/formulario' element={<Form/>}/>
+          </Route>
+        </Routes>
+      </SnackbarProvider>
     </CssBaseline>
     </BrowserRouter>
   </StrictMode>
