@@ -17,4 +17,4 @@ jobs:
             cd /home/ubuntu/ReactInter && 
             git pull origin main &&
             tmux kill-session -t KhiataRestrictSession &&
-            ./executar.sh "
+            ./executarKhiata.sh "
