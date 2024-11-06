@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import { ApprovalCard } from "../../components/ApprovalCard";
 import * as S from "./styles";
+import { ApprovalCard } from "../../components/ApprovalCard";
 import { AnimationComponent } from "../../components/AnimationComponent";
 import NotFoundCard from "../../assets/animations/NotFoundCard.json";
 import { Loading } from "../../components/Loading";
@@ -76,8 +76,6 @@ export const Main = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
-
-  console.log(data)
 
 
     return (

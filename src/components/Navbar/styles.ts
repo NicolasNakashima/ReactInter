@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 export const Wrapper = styled.div(
     () => css`
     display: flex;
+    position: fixed;
     flex-direction: row;
     height: 6rem;
     background-color: #FAC552;
@@ -15,6 +16,8 @@ export const Wrapper = styled.div(
     align-items: center;
     padding: 0 3rem;
     justify-content: center;
+    z-index: 1;
+    width: 100%;
     
     `
     
@@ -73,6 +76,11 @@ export const UserImage = styled.div(
     height: 2rem;
     border: 1px solid white;
     cursor: pointer;
+    justify-content: center;
+
+     img {
+        border-radius: 50%;
+     }
     
     
     
@@ -96,4 +104,5 @@ export const MenuName = styled.h2(
     
     `
 )
+
 
