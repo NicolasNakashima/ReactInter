@@ -15,6 +15,7 @@ export const Wrapper = styled.div(
     gap: 2rem;
     color: #fff;
     background-color: #fff;
+    margin: 2rem;
   `
 );
 
