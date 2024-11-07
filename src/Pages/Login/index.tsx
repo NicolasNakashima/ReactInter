@@ -49,12 +49,9 @@ export const Login = () => {
   };
 
   useEffect(() => {
-    console.log(data);
-    
     if (data.token !== "") {
       localStorage.setItem('url_photo', data.url_photo);
       localStorage.setItem('token', data.token);
-      console.log(atob(String(localStorage.getItem('password'))));
     }
   }, [data]);
 
