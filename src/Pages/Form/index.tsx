@@ -25,7 +25,7 @@ export const Form = () => {
     const handleSubmit = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch('https://api-khiata.onrender.com/forms', {
+            const response = await fetch('https://api-khiata-feira.onrender.com/forms', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ export const Form = () => {
 
     const handleResult = async () => {
         try {
-            const response = await fetch('https://api-khiata.onrender.com/IA', {
+            const response = await fetch('https://api-khiata-feira.onrender.com/IA', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
