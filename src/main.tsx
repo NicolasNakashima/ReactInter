@@ -11,6 +11,7 @@ import { Form } from './Pages/Form';
 import { Login } from './Pages/Login';
 import AppLayout from './components/AppLayout';
 import { NotFound } from './Pages/NotFound';
+import { DashboardFair } from './Pages/DashboardFair';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -32,6 +33,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/" element={<Main />} />
             <Route path='/admin/dashboard' element={<Dashboard/>}/>
             <Route path='/admin/formulario' element={<Form/>}/>
+            <Route path='/admin/avaliacao-projeto' element={<DashboardFair/>}/>
           </Route>
         </Routes>
       </SnackbarProvider>

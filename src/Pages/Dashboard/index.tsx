@@ -22,7 +22,7 @@ export const Dashboard = () => {
     return (
         <S.Wrapper>
             <S.Container>
-                <iframe title="Dashboard" width="100%" height="520" src={iframeSrc} allowFullScreen />
+                <iframe title="Dashboard" width="100%" height="510" src={iframeSrc} allowFullScreen />
             </S.Container>
         </S.Wrapper>
     );

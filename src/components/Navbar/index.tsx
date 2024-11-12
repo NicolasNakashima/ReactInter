@@ -15,6 +15,7 @@ export const Navbar = () => {
         {name: 'Home', path: '/'},
         {name: 'Dashboard', path: '/admin/dashboard'},
         {name: 'Formulário', path: '/admin/formulario'},
+        {name: 'Avalição do Projeto', path: '/admin/avaliacao-projeto'},
     ]
     const userMenu = ['Logout'];
 
